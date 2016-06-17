@@ -2,3 +2,4 @@
   <h2 class='title'><%= link_to post.title, post %></h2>
   <p class='created_at'>This awesome post was created &lt;<%= post.created_at %>&gt;, which was <%= time_ago_in_words(post.created_at) %>.</p>
 <% end %>
+<%= paginate @posts %>
