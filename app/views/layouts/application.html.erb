@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TimelyRescue</title>
+  <title><%= @page_title || "TimelyRescue" %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= link_to 'Home', posts_path %>
+  <%= link_to 'New post', new_post_path %>
   <h1>TimelyRescue</h1>
+  <p>The ultimate rescue team you know you can trust.</p>
+
+  <p style='color: green'><%= flash[:notice] %></p>
+  <p style='color: red'><%= flash[:alert] %></p>
 
 <%= yield %>
 

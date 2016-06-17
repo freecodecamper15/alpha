@@ -1,0 +1,7 @@
+<h2><%= @post.title %></h2>
+<%= simple_format(@post.content) %>
+
+<%= button_to 'Back to the beautiful homepage', posts_path, :method => :get %>
+<%= button_to 'Edit post', edit_post_path(@post), :method => :get %>
+<%= button_to 'Delete post', post_path(@post), :method => :delete, :data => { :confirm => 'Are you sure you want to delete this post? Be warn there is no way you can recover from the loss!!!' } %>
+
