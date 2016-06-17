@@ -7,15 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
   <%= link_to 'Home', posts_path %>
   <%= link_to 'New post', new_post_path %>
-  <h1>TimelyRescue</h1>
-  <p>The ultimate rescue team you know you can trust.</p>
 
+  <nav class='navbar navbar-default' role='navigation'>
+    <% if current_user %>
+      <%= link_to('Log out', destroy_user_session_path, :method => :delete) %> |
+      <%= link_to('Change password', edit_registration_path(:user)) %>
+    <% else %>
+      <% link_to('Register', new_registration_path(:user)) %> |
+      <%= link_to('Log in', new_session_path(:user)) %>
+    <% end %>
+  </nav>
+
+  <div class='container'>
+    <h1>TimelyRescue</h1>
+    <p>The ultimate rescue team you know you can trust.</p>
+  </div>
   <p style='color: green'><%= flash[:notice] %></p>
   <p style='color: red'><%= flash[:alert] %></p>
 
-<%= yield %>
-
+  <div class='container-fluid'>
+    <%= yield %>
+  </div>
 </body>
 </html>
