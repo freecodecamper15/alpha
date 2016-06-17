@@ -1,6 +1,16 @@
-<% @posts.each do |post| %>
+<table class='table'>
+  <tr>
+    <th>Title</th>
+    <th>Time Created</th>
+    <th>Post Age</th>
+  </tr>
 
-  <h2 class='title'><%= link_to post.title, post %></h2>
-  <p class='created_at'>This awesome post was created &lt;<%= post.created_at %>&gt;, which was <%= time_ago_in_words(post.created_at) %>.</p>
-<% end %>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= link_to post.title, post %></td>
+      <td><%= post.created_at %></td>
+      <td><%= time_ago_in_words(post.created_at) %></td>
+    </tr>
+  <% end %>
+</table>
 <%= paginate @posts %>
