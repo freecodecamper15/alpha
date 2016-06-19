@@ -1,6 +1,5 @@
-class AddUrgencyToPosts < ActiveRecord::Migration
+class AddUrgencyToPostsss < ActiveRecord::Migration
   def change
-
     add_column :posts, :urgency, :integer
   end
 end

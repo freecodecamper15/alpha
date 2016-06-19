@@ -11,16 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617100016) do
+ActiveRecord::Schema.define(version: 20160619100906) do
+
+  create_table "authors", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "popularity"
+  end
+
+  create_table "current_readers", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string   "language"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "post_languageships", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "language_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.text     "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "urgency"
+    t.integer  "category_id"
   end
+
+  add_index "posts", ["category_id"], name: "index_posts_on_category_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -35,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160617100016) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "nickname"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

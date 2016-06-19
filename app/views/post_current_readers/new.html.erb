@@ -1,0 +1,6 @@
+<%= form_for @current_reader, :url => post_current_readers_path(@post) do |f| %>
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field :name %>
+
+  <%= f.submit 'Create reader' %>
+<% end %>

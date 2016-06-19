@@ -1,0 +1,13 @@
+<ul>
+  <% @current_readers.each do |reader| %>
+    <li>
+      <%= reader.name %>
+      <%= link_to 'Show', post_current_reader_path(@post, reader) %>
+      <%= link_to 'Edit', edit_post_current_reader_path(@post, reader) %>
+      <%= link_to 'Delete', post_current_reader_path(@post, reader), :method => :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back', posts_path %>
+<%= link_to 'Add new readers', new_post_current_reader_path(@post) %>

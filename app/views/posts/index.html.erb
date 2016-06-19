@@ -1,15 +1,17 @@
 <table class='table'>
   <tr>
-    <th>Title</th>
-    <th>Time Created</th>
-    <th>Post Age</th>
+    <th class='text-center'>Title</th>
+    <th class='text-center'>Time Created</th>
+    <th class='text-center'>Post Age</th>
+    <th class='text-center'>Current Readers</th>
   </tr>
 
   <% @posts.each do |post| %>
     <tr>
-      <td><%= link_to post.title, post %></td>
-      <td><%= post.created_at %></td>
-      <td><%= time_ago_in_words(post.created_at) %></td>
+      <td class='text-center'><%= link_to post.title, post %></td>
+      <td class='text-center'><%= post.created_at %></td>
+      <td class='text-center'><%= time_ago_in_words(post.created_at) %></td>
+      <td class='text-center'><%= link_to post.current_readers.size, post_current_readers_path(post) %></td>
     </tr>
   <% end %>
 </table>

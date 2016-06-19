@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :posts
+
+  resources :posts do
+    resources :current_readers, :controller =>  'post_current_readers'
+  end
 
   root :to => 'posts#index'
 

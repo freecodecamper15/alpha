@@ -1,0 +1,6 @@
+<%= form_for @current_reader, :url => post_current_reader_path(@post, @current_reader), :html => { :method => :patch } do |f| %>
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field  :name %>
+
+  <%= f.submit 'Edit reader' %>
+<% end %>
