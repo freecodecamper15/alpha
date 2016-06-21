@@ -2,7 +2,9 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
+
   def index
+
     # @posts = Post.all
     @posts = Post.page(params[:page]).per(5)
   end
@@ -49,12 +51,46 @@ class PostsController < ApplicationController
     end
   end
 
+  def latest
+    @posts = Post.order('id DESC').limit(3)
+  end
+
+  def bulk_delete
+    Post.destroy_all
+    redirect_to posts_path
+  end
+
+  def bulk_update
+    ids = Array
+  end
+
+  def dashboard
+    @post = Post.find(params[:id])
+  end
+
+  def join
+    @post = Post.find(params[:id])
+    Membership.find_or_create_by( :post => @post, :user => current_user)
+
+    redirect_to :back
+  end
+
+  def withdraw
+    @post = Post.find(params[:id])
+
+    @membership = Membership.find_by( :post => @post, :user => current_user)
+    @membership.destroy
+
+    redirect_to :back
+  end
+
 private
   def set_post
     @post = Post.find(params[:id])
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :category_id)
+    params.require(:post).permit(:title, :content, :category_id, :language_attributes =>
+     [:id, :language, :_destroy], :language_ids => [])
   end
 end

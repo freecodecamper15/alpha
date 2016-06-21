@@ -1,5 +1,7 @@
 <%= f.select :category_id, Category.all.map { |c| [c.name, c.id] } %>
 
+<%= f.collection_check_boxes(:language_ids, Language.all, :id, :language) %>
+
 <%= f.label :title, 'Title' %>
 <%= f.text_field :title %>
 

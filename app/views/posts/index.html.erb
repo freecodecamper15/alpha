@@ -1,9 +1,12 @@
+<%= link_to "Last 3 Posts", latest_posts_path %>
+<%= button_to 'Delete All', bulk_delete_posts_path, :method => :post %>
 <table class='table'>
   <tr>
     <th class='text-center'>Title</th>
     <th class='text-center'>Time Created</th>
     <th class='text-center'>Post Age</th>
     <th class='text-center'>Current Readers</th>
+    <th class='text-center'>Author</th>
   </tr>
 
   <% @posts.each do |post| %>
@@ -12,7 +15,17 @@
       <td class='text-center'><%= post.created_at %></td>
       <td class='text-center'><%= time_ago_in_words(post.created_at) %></td>
       <td class='text-center'><%= link_to post.current_readers.size, post_current_readers_path(post) %></td>
+      <td class='text-center'>
+        <% if post.author %>
+          <%= link_to post.author.name, post_author_path(post) %>
+        <% else %>
+          <%= link_to 'N/A', post_author_path(post) %>
+        <% end %>
+      </td>
+      <td class='text-center'><%= link_to 'Dashboard', dashboard_post_path(post) %></td>
     </tr>
+
   <% end %>
 </table>
+
 <%= paginate @posts %>

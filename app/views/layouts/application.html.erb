@@ -10,6 +10,11 @@
 
   <%= link_to 'Home', posts_path %>
   <%= link_to 'New post', new_post_path %>
+  <% if current_user %>
+    <%= link_to('Sign Out', destroy_user_session_path, :method => :delete) %>
+  <% else %>
+    <%= link_to 'Log into Facebook', user_omniauth_authorize_path(:facebook) %>
+  <% end %>
 
   <nav class='navbar navbar-default' role='navigation'>
     <% if current_user %>

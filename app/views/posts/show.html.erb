@@ -1,5 +1,12 @@
 <p>Category: <%= @post.category.try(:name) %></p>
 <h2><%= @post.title %></h2>
+
+<p>Language:
+  <% @post.languages.each do |l| %>
+    <%= l.language %>
+  <% end %>
+</p>
+
 <%= simple_format(@post.content) %>
 
 <%= button_to 'Back to the beautiful homepage', posts_path, :method => :get %>

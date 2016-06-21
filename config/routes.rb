@@ -1,10 +1,31 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  # devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :posts do
+    collection do
+      get :latest
+      post :bulk_update
+      post :bulk_delete
+    end
+
+    member do
+      get :dashboard
+      post :join
+      post :withdraw
+    end
+
     resources :current_readers, :controller =>  'post_current_readers'
+    resource :author , :controller => 'post_authors'
+    resource :dashboard
+
   end
+
+
+  # url: http://www.dojo.alphacamp.co/events
+  # path: /events
+
 
   root :to => 'posts#index'
 

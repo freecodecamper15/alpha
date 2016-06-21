@@ -1,0 +1,12 @@
+<h1><%= @post.title %></h1>
+<% if @post.author %>
+  <p><%= @post.author.name %></p>
+  <p><%= link_to 'Edit', edit_post_author_path(@post) %></p>
+  <p><%= link_to 'Delete', post_author_path(@post), :method => :delete %></p>
+<% else %>
+  <p>N/A</p>
+  <p><%= link_to 'Add author', new_post_author_path(@post) %></p>
+<% end %>
+
+
+

@@ -1,0 +1,8 @@
+<ul>
+<% @posts.each do |p| %>
+  <li>
+    <p class='title'><%= p.title %></p>
+    <%= simple_format(p.content) %>
+  </li>
+<% end %>
+</ul>
